@@ -96,7 +96,7 @@ def parse_args():
                              ' (default: BCEDiceLoss)')
 
     # dataset
-    parser.add_argument('--dataset', default='data_sum_moxizhen+bijie(721)',
+    parser.add_argument('--dataset', default='data_sum_moxizhen+bijie',
                         help='dataset name')
     parser.add_argument('--img_ext', default='.png',
                         help='image file extension')
