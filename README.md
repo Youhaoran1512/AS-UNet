@@ -1,6 +1,6 @@
 # AS-UNet Training Configuration Guide
 
-This project is used for image segmentation model training. Dataset files should be placed in the `inputs` directory. The main training entry is `train.py`.
+This project is used for landslide image segmentation model training. Dataset files should be placed in the `inputs` directory. The main training entry is `train.py`.
 
 ## Dataset Directory
 
