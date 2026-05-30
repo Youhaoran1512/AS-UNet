@@ -7,14 +7,17 @@ class CSJG(nn.Module):
     def __init__(self, input_channel):
         super().__init__()
         self.conv = nn.Conv2d(input_channel*2, input_channel, 1)
+        self.econv = nn.Conv2d(input_channel, input_channel, 1)
         self.gelu = nn.GELU()
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, e, d):
         d = self.conv(d)
+        # e_c = self.econv(e)
         mid_map = e + d
         map_relu = self.gelu(mid_map)
         attention_map = self.sigmoid(map_relu)
+
         return attention_map * e
 
 

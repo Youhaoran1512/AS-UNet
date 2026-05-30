@@ -6,18 +6,6 @@ import torch.utils.data
 from tqdm import tqdm
 from scipy.ndimage import distance_transform_edt
 
-def compute_distance_map(mask):
-    """
-    mask: (H, W), values in {0,1}
-    return: (H, W) float distance map
-    """
-    mask = mask.astype(np.bool_)
-
-    dist_out = distance_transform_edt(~mask)
-    dist_in  = distance_transform_edt(mask)
-
-    dist_map = dist_out + dist_in
-    return dist_map
 
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, img_ids, mask_ids, img_dir, mask_dir, img_ext, mask_ext, num_classes, transform=None):
@@ -66,16 +54,6 @@ class Dataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.img_ids)
 
-    def GetDist_map(self):
-        os.makedirs(self.dist_dir, exist_ok=True)
-        for name in tqdm(os.listdir(self.mask_dir)):
-            mask = cv2.imread(os.path.join(self.mask_dir, name), cv2.IMREAD_GRAYSCALE)
-            mask = (mask > 127).astype(np.uint8)
-
-            dist = compute_distance_map(mask)
-            dist = np.clip(dist, 0, 20)  # ⭐ 非常推荐
-
-            np.save(os.path.join(self.dist_dir, name.replace(".png", ".npy")), dist)
 
     def __getitem__(self, idx):
         img_id = self.img_ids[idx]

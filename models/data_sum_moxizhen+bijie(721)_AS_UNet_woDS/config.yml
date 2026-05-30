@@ -1,4 +1,4 @@
-arch: AS_UNet
+arch: UNet
 batch_size: 16
 dataset: data_sum_moxizhen+bijie(721)
 deep_supervision: false
@@ -16,7 +16,7 @@ mask_ext: .png
 milestones: 1,2
 min_lr: 1.0e-05
 momentum: 0.9
-name: data_sum_moxizhen+bijie(721)_AS_UNet_woDS
+name: data_sum_moxizhen+bijie(721)_UNet_woDS
 nesterov: false
 num_classes: 1
 num_workers: 0

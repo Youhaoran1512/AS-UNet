@@ -24,7 +24,6 @@ from metrics import iou_score
 from utils import AverageMeter, str2bool
 
 
-
 ARCH_NAMES = archs.__all__
 LOSS_NAMES = losses.__all__
 LOSS_NAMES.append('BCEWithLogitsLoss')
